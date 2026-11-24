@@ -1,0 +1,16 @@
+{
+  "retrieved": "2026-11-24",
+  "per_million_usd": {
+    "claude-opus-5-5": {"input": 4.0, "cache_read": 0.2, "cache_write": 5.0, "output": 20.0},
+    "gpt-6.1-sol": {"input": 2.0, "cache_read": 0.1, "cache_write": 2.5, "output": 10.0}
+  },
+  "notes": [
+    "List API prices; the experiment ran on subscriptions (Claude Max/Pro, ChatGPT Plus), so these are what the same tokens WOULD cost on the API — estimates, not invoices.",
+    "Claude cache_write priced at the 5-minute TTL rate (1.25x input); 1-hour writes cost 2x input, so the main-session share of Synergy is slightly underestimated.",
+    "OpenAI output_tokens already include reasoning tokens; reasoning is not charged separately."
+  ],
+  "sources": {
+    "claude-opus-5-5": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "gpt-6.1-sol": "https://developers.openai.com/api/docs/pricing (rates as reported by https://mixed-news.com/en/gpt-6-1-sol-pricing-cached-input-halved/ and https://www.eesel.ai/blog/gpt-6-1-sol-pricing; official page not retrievable at collection time)"
+  }
+}
