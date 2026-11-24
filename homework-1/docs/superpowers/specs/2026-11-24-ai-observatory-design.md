@@ -24,7 +24,7 @@ Rules (fairness):
 - **No human help** during a run. If a variant asks a question, the reply is always "decide yourself".
 - Each variant works only in its own folder `variants/<name>/`; it is told not to read sibling folders.
 - Hidden acceptance tests (§5) are **written only after all three runs finish** (by a fresh subagent from TASKS.md alone), so no builder — including the Synergy orchestrator — has seen them.
-- **Failure policy:** time cap 90 min per run; no retries; result recorded as-is (crash/partial = what the acceptance suite measures). If a subscription limit is hit mid-run, the run pauses until reset and the wait is excluded from time (marked in UI).
+- **Failure policy:** time cap 90 min per run; no retries; result recorded as-is (crash/partial = what the acceptance suite measures). If a subscription limit is hit mid-run, the user re-logins (possibly another account); the pause is excluded from time (marked in UI) and the limit delta is summed per account.
 - **Equal permissions:** every builder gets network access (package installs) and write access only to its own folder. Codex: `codex exec --sandbox workspace-write` with network enabled, cwd = its folder. Opus subagent: same session permission mode, instructed to stay in its folder.
 - Codex logs verified: `~/.codex/sessions/**/*.jsonl` contain `token_count` (input/cached/output/reasoning) and `rate_limits`.
 - Synergy protocol: (1) Codex and Opus-debater each write a plan independently from BRIEF.md; (2) each critiques the other's plan, max 2 rounds; (3) orchestrator writes `variants/synergy/DECISIONS.md` (what was taken from whom and why) and implements; may delegate pieces to either. Debate transcript saved to `variants/synergy/debate/`.
