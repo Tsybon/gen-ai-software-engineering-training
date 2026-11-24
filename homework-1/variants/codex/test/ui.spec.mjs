@@ -1,0 +1,76 @@
+import { test, expect } from '@playwright/test';
+
+test('operator can create, inspect, filter, export and check currency balances', async ({ page }) => {
+  const errors=[]; page.on('pageerror', error=>errors.push(error.message));
+  await page.goto('/');
+  await expect(page.locator('#connection')).toHaveText('API connected');
+  await page.locator('#create').click();
+  await page.locator('#submit-transaction').click();
+  await expect(page.locator('[data-error="amount"]')).toContainText('positive');
+  await expect(page.locator('[data-error="fromAccount"]')).toContainText('ACC-XXXXX');
+  await page.locator('#create-type').selectOption('deposit');
+  await page.locator('[name=toAccount]').fill('ACC-TEST1');
+  await page.locator('[name=amount]').fill('125.50');
+  await page.locator('#submit-transaction').click();
+  await expect(page.locator('#create-dialog')).not.toBeVisible();
+  await page.locator('#account-filter').fill('ACC-TEST1');
+  await expect(page.locator('#transactions tr')).toHaveCount(1);
+  await page.locator('.row-details').click();
+  await expect(page.locator('#details-content')).toContainText('125.50');
+  await expect(page.locator('#details-content')).toContainText('ACC-TEST1');
+  await page.locator('#details-dialog [aria-label="Close details"]').click();
+  await page.locator('#balance-account').fill('ACC-TEST1');
+  await page.locator('#balance-form button').click();
+  await expect(page.locator('#balance-result')).toContainText('125.50');
+  await expect(page.locator('#balance-result')).toContainText('USD');
+  await page.locator('#type-filter').selectOption('transfer');
+  await expect(page.locator('#empty h3')).toHaveText('No matching transactions');
+  await page.locator('#clear-filters').click();
+  await page.locator('#account-filter').fill('ACC-TEST1');
+  await expect(page.locator('#transactions tr')).toHaveCount(1);
+  const downloadPromise=page.waitForEvent('download');
+  await page.locator('#export').click();
+  const download=await downloadPromise;
+  expect(download.suggestedFilename()).toBe('ledger-transactions.csv');
+  expect(errors).toEqual([]);
+});
+
+test('demo records are labelled, filters combine and mobile stays inside viewport', async ({ page }) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.goto('/');
+  await expect(page.locator('#connection')).toHaveText('API connected');
+  await page.locator('#demo').click();
+  await expect(page.locator('#demo')).toHaveText('Demo data loaded');
+  await expect(page.locator('.demo-label')).toHaveCount(8);
+  await page.locator('#account-filter').fill('ACC-10002');
+  await page.locator('#type-filter').selectOption('transfer');
+  const today=new Date().toISOString().slice(0,10);
+  await page.locator('#from-filter').fill(today); await page.locator('#to-filter').fill(today);
+  await expect(page.locator('#transactions tr')).toHaveCount(1);
+  await expect(page.locator('#transactions')).toContainText('EUR');
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
+  await page.locator('#create').click();
+  await page.locator('#create-type').selectOption('withdrawal');
+  await page.locator('[name=fromAccount]').fill('ACC-10001');
+  await page.locator('[name=amount]').fill('1.001');
+  await page.locator('#submit-transaction').click();
+  await expect(page.locator('[data-error="amount"]')).toContainText('2 decimal');
+  expect(await page.locator('#create-dialog').evaluate(el=>el.scrollWidth<=el.clientWidth)).toBeTruthy();
+});
+
+test('API connection failure and form submission failure are recoverable', async ({ page })=>{
+  const errors=[]; page.on('pageerror', error=>errors.push(error.message));
+  await page.route('http://localhost:3101/**', route=>route.abort());
+  await page.goto('/');
+  await expect(page.locator('#api-error')).toBeVisible();
+  await expect(page.locator('#connection')).toHaveText('API offline');
+  await page.locator('#create').click();
+  await page.locator('#submit-transaction').click();
+  await expect(page.locator('#create-error')).toContainText('unreachable');
+  await expect(page.locator('#submit-transaction')).toBeEnabled();
+  expect(errors).toEqual([]);
+  await page.locator('#create-dialog [aria-label="Close form"]').click();
+  await page.unrouteAll(); await page.locator('#retry').click();
+  await expect(page.locator('#api-error')).not.toBeVisible();
+  await expect(page.locator('#connection')).toHaveText('API connected');
+});

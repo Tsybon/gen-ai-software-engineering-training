@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101411"><meta name="description" content="Create, track and inspect banking transactions and account balances by currency.">
+  <title>Ledger — Transaction workspace</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/styles.css">
+  <script src="/config.js"></script><script type="module" src="/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to transactions</a>
+<aside class="sidebar">
+  <a class="brand" href="/" aria-label="Ledger home"><img src="/favicon.svg" width="32" height="32" alt=""><span>ledger<span class="brand-dot">.</span></span></a>
+  <div class="workspace"><span class="workspace-mark">W</span><span>Workspace<small>Local environment</small></span><span class="workspace-arrow" aria-hidden="true">⌄</span></div>
+  <div class="nav-label">WORKSPACE</div>
+  <nav aria-label="Main navigation"><a href="#main" class="nav-item active"><span data-icon="activity"></span>Transactions<span class="nav-count" id="nav-count">0</span></a><a href="#balances" class="nav-item"><span data-icon="wallet"></span>Account balances</a></nav>
+  <div class="sidebar-bottom"><div class="storage-note"><span data-icon="layers"></span><strong>A fresh ledger, every run.</strong><p>Transactions stay in memory for this session.</p></div><div class="profile"><span class="avatar">LO</span><span>Local operator<small>Development workspace</small></span></div></div>
+</aside>
+<div class="app-shell">
+  <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <strong>Transactions</strong></div><div class="connection" id="connection" role="status"><i></i>Connecting</div></header>
+  <main id="main">
+    <div class="page-heading"><div><h1>Transactions</h1><p>Your money movements. Every detail accounted for.</p></div><div class="page-actions"><button class="button secondary" id="export"><span data-icon="download"></span>Export CSV</button><button class="button primary" id="create"><span data-icon="plus"></span>New transaction</button></div></div>
+    <div id="api-error" class="error-banner" role="alert" hidden><div><strong>Unable to reach the API</strong><p id="api-error-message">Check that the server is running, then try again.</p></div><button class="button secondary" id="retry">Try again</button></div>
+    <section class="metrics" aria-label="Transaction overview">
+      <article class="metric"><div class="metric-label">Total transactions <span data-icon="arrows"></span></div><div class="metric-value" id="total-count">0</div><div class="metric-foot"><span class="mini-dot mint"></span><span id="completed-count">0 completed</span></div></article>
+      <article class="metric"><div class="metric-label">Completed volume <span data-icon="chart"></span></div><div class="metric-value volume-value" id="total-volume">—</div><div class="metric-foot" id="volume-note">Separated by currency</div></article>
+      <article class="metric"><div class="metric-label">Pending transactions <span data-icon="clock"></span></div><div class="metric-value" id="pending-count">0</div><div class="metric-foot"><span class="mini-dot amber"></span>Awaiting completion</div></article>
+      <article class="metric"><div class="metric-label">Failed transactions <span data-icon="alert"></span></div><div class="metric-value" id="failed-count">0</div><div class="metric-foot" id="failed-note">No failed transactions</div></article>
+    </section>
+    <section class="ledger-panel" aria-labelledby="history-title">
+      <div class="panel-heading"><div class="heading-inline"><h2 id="history-title">Transaction history</h2><span class="count-chip" id="history-count">0</span></div><div class="history-actions"><button class="text-button" id="demo"><span data-icon="layers"></span>Load demo data</button><button class="icon-button" id="refresh" aria-label="Refresh transactions"><span data-icon="refresh"></span></button></div></div>
+      <form id="filters" class="filters">
+        <label class="search-control"><span data-icon="search"></span><input id="search" type="search" placeholder="Search ID or account…" aria-label="Search transactions"></label>
+        <label class="filter-field"><span class="sr-only">Account filter</span><input id="account-filter" placeholder="Account ID" aria-label="Account filter" maxlength="9"></label>
+        <label class="filter-field type-filter"><span class="sr-only">Transaction type</span><select id="type-filter" aria-label="Transaction type"><option value="">All types</option><option value="deposit">Deposit</option><option value="withdrawal">Withdrawal</option><option value="transfer">Transfer</option></select></label>
+        <div class="date-filters"><label><span class="sr-only">From date</span><input id="from-filter" type="date" aria-label="From date"></label><span class="date-divider">–</span><label><span class="sr-only">To date</span><input id="to-filter" type="date" aria-label="To date"></label></div>
+        <button type="button" class="text-button clear-button" id="clear-filters" hidden>Clear</button>
+      </form>
+      <div id="filter-error" class="inline-error" role="alert" hidden></div>
+      <div class="table-scroll"><table><thead><tr><th scope="col">Transaction / date</th><th scope="col">Type</th><th scope="col">From account</th><th scope="col">To account</th><th scope="col" class="amount-col">Amount</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Details</span></th></tr></thead><tbody id="transactions"></tbody></table></div>
+      <div class="empty-state" id="empty"><div class="empty-icon" data-icon="arrows"></div><h3>Your ledger starts here</h3><p>Create your first transaction or explore a clearly labelled demo dataset.</p><button class="button secondary" id="empty-create">Create a transaction<span data-icon="arrow"></span></button></div>
+      <div class="table-footer"><span id="table-count">Showing 0 transactions</span><span><i class="mini-dot mint"></i> In-memory ledger</span></div>
+    </section>
+    <section class="bottom-grid">
+      <article class="balance-panel" id="balances" aria-labelledby="balance-title"><div class="panel-heading"><div><h2 id="balance-title">Account balances</h2><p class="panel-description">Completed transactions, currency by currency.</p></div><span class="heading-icon" data-icon="wallet"></span></div><form class="balance-form" id="balance-form"><label for="balance-account">Account ID</label><div class="input-button"><input id="balance-account" placeholder="ACC-12345" maxlength="9" required pattern="ACC-[A-Za-z0-9]{5}"><button class="button secondary" type="submit">Look up<span data-icon="arrow"></span></button></div></form><div id="balance-result" class="balance-result" aria-live="polite"><p class="quiet">Enter an account to view its balances.</p></div></article>
+      <article class="activity-panel"><div class="panel-heading"><div><h2>Volume by currency</h2><p class="panel-description">Completed transaction amounts. No conversion.</p></div><span class="heading-icon" data-icon="chart"></span></div><div id="currency-volume" class="currency-volume"><div class="quiet volume-empty">Currency activity will appear after your first completed transaction.</div></div></article>
+    </section>
+    <footer class="page-footer"><span>Ledger <span class="footer-separator">/</span> Transaction workspace</span><span>No database. Session data only.</span></footer>
+  </main>
+</div>
+<dialog id="create-dialog" aria-labelledby="create-title"><div class="dialog-heading"><div><h2 id="create-title">New transaction</h2><p>Record a money movement in your ledger.</p></div><button class="icon-button close-dialog" aria-label="Close form"><span data-icon="close"></span></button></div><form id="transaction-form" novalidate><div class="form-grid">
+<label class="form-field full">Transaction type<select name="type" id="create-type"><option value="transfer">Transfer</option><option value="deposit">Deposit</option><option value="withdrawal">Withdrawal</option></select><span class="field-error" data-error="type"></span></label>
+<label class="form-field" id="from-field">From account<input name="fromAccount" placeholder="ACC-12345" maxlength="9" autocomplete="off"><span class="field-error" data-error="fromAccount"></span></label>
+<label class="form-field" id="to-field">To account<input name="toAccount" placeholder="ACC-67890" maxlength="9" autocomplete="off"><span class="field-error" data-error="toAccount"></span></label>
+<label class="form-field">Amount<input name="amount" type="number" step="0.01" min="0.01" placeholder="0.00" inputmode="decimal"><span class="field-error" data-error="amount"></span></label>
+<label class="form-field">Currency<input name="currency" list="currencies" value="USD" maxlength="3" autocomplete="off"><datalist id="currencies"><option value="USD"><option value="EUR"><option value="GBP"><option value="JPY"><option value="UAH"><option value="CHF"><option value="CAD"><option value="AUD"></datalist><span class="field-error" data-error="currency"></span></label>
+<label class="form-field full">Status<select name="status"><option value="completed">Completed</option><option value="pending">Pending</option><option value="failed">Failed</option></select><span class="field-error" data-error="status"></span></label>
+</div><p class="form-note"><span data-icon="info"></span>Only completed transactions affect account balances.</p><div id="create-error" class="inline-error" role="alert" hidden></div><div class="dialog-actions"><button type="button" class="button secondary close-dialog">Cancel</button><button type="submit" class="button primary" id="submit-transaction">Create transaction<span data-icon="arrow"></span></button></div></form></dialog>
+<dialog id="details-dialog" aria-labelledby="details-title"><div class="dialog-heading"><div><h2 id="details-title">Transaction details</h2><p>The full record of this money movement.</p></div><button class="icon-button close-dialog" aria-label="Close details"><span data-icon="close"></span></button></div><div id="details-content"></div></dialog>
+<div id="toast" role="status" class="toast" hidden></div>
+</body></html>

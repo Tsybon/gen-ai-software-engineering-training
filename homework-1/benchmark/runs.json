@@ -16,5 +16,19 @@
       "claude-opus-5-5",
       "gpt-6.1-sol"
     ]
+  },
+  "codex": {
+    "start": "2026-11-24T20:24:54Z",
+    "end": "2026-11-24T20:38:01Z",
+    "pauses": [],
+    "codex_sessions": [
+      "/Users/serhiitsybulnik/.codex/sessions/2026/11/24/rollout-2026-11-24T22-25-00-01a20f3b-af6a-77b1-8b4f-b8be5bf92732.jsonl",
+      "/Users/serhiitsybulnik/.codex/sessions/2026/11/24/rollout-2026-11-24T22-25-26-01a20f3c-1a1a-7a53-bcc6-a0c607e23381.jsonl"
+    ],
+    "claude_transcripts": [],
+    "main_session": null,
+    "models": [
+      "gpt-6.1-sol"
+    ]
   }
 }
