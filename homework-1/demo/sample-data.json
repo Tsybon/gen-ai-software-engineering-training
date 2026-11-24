@@ -1,0 +1,21 @@
+{
+  "_note": "DEMO data — illustrative transactions for manual testing. Not real accounts. POST each item of `transactions` to /transactions.",
+  "demo": true,
+  "transactions": [
+    { "toAccount": "ACC-DEMO1", "amount": 5000, "currency": "USD", "type": "deposit" },
+    { "toAccount": "ACC-DEMO2", "amount": 3200, "currency": "EUR", "type": "deposit" },
+    { "toAccount": "ACC-DEMO3", "amount": 150000, "currency": "JPY", "type": "deposit" },
+    { "fromAccount": "ACC-DEMO1", "toAccount": "ACC-DEMO2", "amount": 750.25, "currency": "USD", "type": "transfer" },
+    { "fromAccount": "ACC-DEMO1", "amount": 120, "currency": "USD", "type": "withdrawal" },
+    { "fromAccount": "ACC-DEMO2", "toAccount": "ACC-DEMO3", "amount": 410, "currency": "EUR", "type": "transfer" },
+    { "toAccount": "ACC-DEMO1", "amount": 980.4, "currency": "GBP", "type": "deposit" },
+    { "fromAccount": "ACC-DEMO3", "amount": 22000, "currency": "JPY", "type": "withdrawal" },
+    { "fromAccount": "ACC-DEMO1", "toAccount": "ACC-DEMO3", "amount": 300, "currency": "USD", "type": "transfer" },
+    { "fromAccount": "ACC-DEMO2", "amount": 99.99, "currency": "EUR", "type": "withdrawal" },
+    { "toAccount": "ACC-DEMO2", "amount": 1250, "currency": "USD", "type": "deposit" },
+    { "fromAccount": "ACC-DEMO2", "toAccount": "ACC-DEMO1", "amount": 64.5, "currency": "GBP", "type": "transfer" },
+    { "toAccount": "ACC-DEMO3", "amount": 42.42, "currency": "UAH", "type": "deposit" },
+    { "fromAccount": "ACC-DEMO3", "toAccount": "ACC-DEMO1", "amount": 15, "currency": "UAH", "type": "transfer" },
+    { "fromAccount": "ACC-DEMO1", "amount": 8.88, "currency": "GBP", "type": "withdrawal" }
+  ]
+}

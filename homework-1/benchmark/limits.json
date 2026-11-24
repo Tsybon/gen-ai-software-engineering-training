@@ -1,0 +1,38 @@
+{
+  "synergy": {
+    "claude": [
+      {
+        "account": "A",
+        "before_session_pct": 19,
+        "before_week_pct": 36,
+        "after_session_pct": 32,
+        "after_week_pct": 38
+      }
+    ],
+    "note": "manual /usage snapshot"
+  },
+  "codex": {
+    "claude": [
+      {
+        "account": "A",
+        "before_session_pct": 32,
+        "before_week_pct": 38,
+        "after_session_pct": 33,
+        "after_week_pct": 38
+      }
+    ],
+    "note": "manual /usage snapshot (Claude not used by builder; orchestrator overhead only)"
+  },
+  "opus": {
+    "claude": [
+      {
+        "account": "A",
+        "before_session_pct": 33,
+        "before_week_pct": 38,
+        "after_session_pct": 38,
+        "after_week_pct": 39
+      }
+    ],
+    "note": "manual /usage snapshot"
+  }
+}

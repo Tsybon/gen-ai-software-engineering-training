@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ledgerline — Transactions</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='4' fill='%2334d399'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo" aria-hidden="true"></span>Ledgerline <span class="muted">/ transactions</span></div>
+    <div class="topbar-actions">
+      <span id="apiStatus" class="pill pill-wait" role="status">Connecting…</span>
+      <button id="sampleBtn" class="btn btn-ghost" type="button">Load sample data <span class="demo-tag">DEMO</span></button>
+      <a id="exportBtn" class="btn btn-ghost" href="#" download>Export CSV</a>
+      <button id="refreshBtn" class="btn btn-ghost" type="button" aria-label="Refresh">Refresh</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <div id="errorBanner" class="banner" role="alert" hidden></div>
+
+    <section class="kpis" aria-label="Key metrics">
+      <article class="kpi"><h2>Transactions</h2><p id="kpiCount" class="kpi-value">—</p><p id="kpiCountSub" class="kpi-sub"></p></article>
+      <article class="kpi"><h2>Completed volume</h2><p id="kpiVolume" class="kpi-value">—</p><p id="kpiVolumeSub" class="kpi-sub"></p></article>
+      <article class="kpi"><h2>Pending</h2><p id="kpiPending" class="kpi-value">—</p><p class="kpi-sub">awaiting settlement</p></article>
+      <article class="kpi kpi-bad"><h2>Failed</h2><p id="kpiFailed" class="kpi-value">—</p><p id="kpiFailedSub" class="kpi-sub"></p></article>
+    </section>
+
+    <div class="grid">
+      <section class="panel panel-table" aria-labelledby="txTitle">
+        <div class="panel-head">
+          <h2 id="txTitle">Transactions</h2>
+          <span id="txMeta" class="muted"></span>
+        </div>
+        <form id="filters" class="filters" autocomplete="off">
+          <label class="f-search"><span>Search</span><input id="fSearch" type="search" placeholder="ID, account, amount, currency…"></label>
+          <label><span>Account</span><input id="fAccount" name="accountId" placeholder="ACC-12345"></label>
+          <label><span>Type</span>
+            <select name="type"><option value="">All types</option><option>deposit</option><option>withdrawal</option><option>transfer</option></select>
+          </label>
+          <label><span>Status</span>
+            <select name="status"><option value="">All statuses</option><option>completed</option><option>pending</option><option>failed</option></select>
+          </label>
+          <label><span>From</span><input type="date" name="from"></label>
+          <label><span>To</span><input type="date" name="to"></label>
+          <button type="reset" class="btn btn-ghost btn-sm">Clear</button>
+        </form>
+        <p id="filterError" class="field-error" hidden></p>
+        <div class="table-wrap">
+          <table class="tx-table">
+            <thead><tr><th>Date</th><th>Type</th><th>From → To</th><th class="num">Amount</th><th>Status</th></tr></thead>
+            <tbody id="txBody"></tbody>
+          </table>
+          <div id="txEmpty" class="empty" hidden></div>
+        </div>
+      </section>
+
+      <aside class="side">
+        <section class="panel" aria-labelledby="newTitle">
+          <h2 id="newTitle">New transaction</h2>
+          <form id="txForm" class="tx-form" novalidate>
+            <div class="seg" role="radiogroup" aria-label="Type">
+              <label><input type="radio" name="type" value="deposit" checked><span>Deposit</span></label>
+              <label><input type="radio" name="type" value="withdrawal"><span>Withdrawal</span></label>
+              <label><input type="radio" name="type" value="transfer"><span>Transfer</span></label>
+            </div>
+            <label data-for="fromAccount"><span>From account</span><input name="fromAccount" placeholder="ACC-12345"><small class="field-error" data-error="fromAccount"></small></label>
+            <label data-for="toAccount"><span>To account</span><input name="toAccount" placeholder="ACC-67890"><small class="field-error" data-error="toAccount"></small></label>
+            <div class="row2">
+              <label><span>Amount</span><input name="amount" inputmode="decimal" placeholder="0.00"><small class="field-error" data-error="amount"></small></label>
+              <label><span>Currency</span><input name="currency" value="USD" maxlength="3" list="currencies"><small class="field-error" data-error="currency"></small></label>
+            </div>
+            <datalist id="currencies"><option>USD</option><option>EUR</option><option>GBP</option><option>JPY</option><option>CHF</option><option>UAH</option><option>PLN</option><option>CAD</option></datalist>
+            <label><span>Status</span>
+              <select name="status"><option value="completed">completed</option><option value="pending">pending</option><option value="failed">failed</option></select>
+              <small class="field-error" data-error="status"></small>
+            </label>
+            <small class="field-error" data-error="type"></small>
+            <small class="field-error" data-error="body"></small>
+            <button class="btn btn-primary" type="submit">Create transaction</button>
+            <p id="formResult" class="form-result" role="status"></p>
+          </form>
+        </section>
+
+        <section class="panel" aria-labelledby="balTitle">
+          <h2 id="balTitle">Account balances</h2>
+          <form id="balForm" class="bal-form">
+            <input id="balAccount" placeholder="ACC-12345" aria-label="Account ID">
+            <button class="btn btn-primary btn-sm" type="submit">Look up</button>
+          </form>
+          <div id="accountChips" class="chips"></div>
+          <div id="balResult" class="bal-result"><p class="empty-sm">Pick an account to see its balances per currency.</p></div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <dialog id="details" class="details" aria-labelledby="detailsTitle">
+    <div class="details-head"><h2 id="detailsTitle">Transaction</h2><button class="btn btn-ghost btn-sm" type="button" data-close aria-label="Close">✕</button></div>
+    <div id="detailsBody"></div>
+  </dialog>
+</body>
+</html>
