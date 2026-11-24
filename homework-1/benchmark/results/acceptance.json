@@ -1,0 +1,585 @@
+{
+  "codex": {
+    "passed": 37,
+    "total": 37,
+    "tests": [
+      {
+        "name": "test_balance::test_deposit_increases_balance",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_balance::test_withdrawal_reduces_balance",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_balance::test_transfer_moves_money_between_accounts",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_post_returns_201_with_all_model_fields",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_post_timestamp_is_iso8601",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_post_status_is_valid_value",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_list_returns_array_containing_created",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_get_by_id_returns_same_transaction",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_get_unknown_id_returns_404",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_balance_endpoint_returns_200",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_account",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_type",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_date_range_includes_today",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_past_date_range_excludes_new",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_account_and_type_combined",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_account_and_date_combined",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_optional::test_summary",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_optional::test_interest",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_optional::test_csv_export",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[negative]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[zero]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[three_decimals]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[non_number]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[ACC-12]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[XYZ-12345]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[ACC-1234!]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[ACC-123456]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_to_account_rejected",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_currency_rejected",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_error_body_shape",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_multiple_errors_reported_together",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_alnum_account_accepted",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_currencies_accepted[EUR]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_currencies_accepted[GBP]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_currencies_accepted[JPY]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_min_amount_accepted",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_two_decimals_accepted",
+        "passed": true,
+        "message": null
+      }
+    ]
+  },
+  "opus": {
+    "passed": 37,
+    "total": 38,
+    "tests": [
+      {
+        "name": "test_balance::test_deposit_increases_balance",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_balance::test_withdrawal_reduces_balance",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_balance::test_transfer_moves_money_between_accounts",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_post_returns_201_with_all_model_fields",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_post_timestamp_is_iso8601",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_post_status_is_valid_value",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_list_returns_array_containing_created",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_get_by_id_returns_same_transaction",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_get_unknown_id_returns_404",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_balance_endpoint_returns_200",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_account",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_type",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_date_range_includes_today",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_past_date_range_excludes_new",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_account_and_type_combined",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_account_and_date_combined",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_optional::test_summary",
+        "passed": false,
+        "message": "AssertionError: no recent date: {'accountid': 'ACC-IQI6Q', 'totalsbycurrency': [{'currency': 'USD', 'totalDeposits': 300, 'totalWithdrawals': 100}], 'currency': 'USD', 'totaldeposits': 300, 'totalwithdrawals': 100, 'transactioncount': 2, 'mostrecenttransactiondate': None}"
+      },
+      {
+        "name": "test_optional::test_interest",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_optional::test_csv_export",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[negative]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[zero]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[three_decimals]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[non_number]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[ACC-12]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[XYZ-12345]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[ACC-1234!]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[ACC-123456]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_to_account_rejected",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_currency_rejected",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_error_body_shape",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_multiple_errors_reported_together",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_alnum_account_accepted",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_currencies_accepted[EUR]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_currencies_accepted[GBP]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_currencies_accepted[JPY]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_min_amount_accepted",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_two_decimals_accepted",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_zz_rate_limit::test_rate_limit_returns_429",
+        "passed": true,
+        "message": null
+      }
+    ]
+  },
+  "synergy": {
+    "passed": 38,
+    "total": 38,
+    "tests": [
+      {
+        "name": "test_balance::test_deposit_increases_balance",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_balance::test_withdrawal_reduces_balance",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_balance::test_transfer_moves_money_between_accounts",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_post_returns_201_with_all_model_fields",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_post_timestamp_is_iso8601",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_post_status_is_valid_value",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_list_returns_array_containing_created",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_get_by_id_returns_same_transaction",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_get_unknown_id_returns_404",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_core::test_balance_endpoint_returns_200",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_account",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_type",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_date_range_includes_today",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_by_past_date_range_excludes_new",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_account_and_type_combined",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_filters::test_filter_account_and_date_combined",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_optional::test_summary",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_optional::test_interest",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_optional::test_csv_export",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[negative]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[zero]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[three_decimals]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_amount_rejected[non_number]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[ACC-12]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[XYZ-12345]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[ACC-1234!]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_from_account_rejected[ACC-123456]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_to_account_rejected",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_invalid_currency_rejected",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_error_body_shape",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_multiple_errors_reported_together",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_alnum_account_accepted",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_currencies_accepted[EUR]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_currencies_accepted[GBP]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_valid_currencies_accepted[JPY]",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_min_amount_accepted",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_validation::test_two_decimals_accepted",
+        "passed": true,
+        "message": null
+      },
+      {
+        "name": "test_zz_rate_limit::test_rate_limit_returns_429",
+        "passed": true,
+        "message": null
+      }
+    ]
+  }
+}
