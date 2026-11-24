@@ -30,5 +30,18 @@
     "models": [
       "gpt-6.1-sol"
     ]
+  },
+  "opus": {
+    "start": "2026-11-24T20:55:09Z",
+    "end": "2026-11-24T21:00:21Z",
+    "pauses": [],
+    "codex_sessions": [],
+    "claude_transcripts": [
+      "/Users/serhiitsybulnik/.claude/projects/-Users-serhiitsybulnik-Documents-AI-Dev-SET/c2b522a3-9eb6-4b4e-bb13-87b395d2cda6/subagents/agent-a20621535d554460a.jsonl"
+    ],
+    "main_session": null,
+    "models": [
+      "claude-opus-5-5"
+    ]
   }
 }
